@@ -17,4 +17,4 @@ then
   mkdir -p $build_dir
 fi
 
-as -o $build_dir/$obj $src_dir/$src && ld -o $build_dir/$target $build_dir/$obj 
+as -gstabs -o $build_dir/$obj $src_dir/$src && ld -o $build_dir/$target $build_dir/$obj
