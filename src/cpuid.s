@@ -8,20 +8,20 @@ output:
 .section .text
 .globl _start
 _start:
-  movl $0, %eax
+  mov  $0, %rax
   cpuid
-  movl $output, %edi
-  movl %ebx, 28(%edi)
-  movl %edx, 32(%edi)
-  movl %ecx, 36(%edi)
+  mov  $output, %rdi
+  movl %ebx, 28(%rdi)
+  movl %edx, 32(%rdi)
+  movl %ecx, 36(%rdi)
 
-  movl $4, %eax
-  movl $1, %ebx
-  movl $output, %ecx
-  movl $42, %edx
-  int $0x80
+  mov  $4, %rax
+  mov  $1, %rbx
+  mov  $output, %rcx
+  mov  $42, %rdx
+  int  $0x80
 
-  movl $1, %eax
-  movl $0, %ebx
-  int $0x80
+  mov  $1, %rax
+  mov  $0, %rbx
+  int  $0x80
 
