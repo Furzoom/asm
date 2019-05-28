@@ -13,13 +13,13 @@ ended:
 .section .text
 .globl _start
 _start:
-  mov $height, %rdi
-  mov $length, %rax
-  mov $end, %rbx
-  mov $factor, %rcx
+  mov $height, %edi
+  mov $length, %eax
+  mov $end, %ebx
+  mov $factor, %ecx
 
-  mov $1, %rax
-  mov $0, %rbx
+  mov $1, %eax
+  mov $0, %ebx
   int $0x80
 
 

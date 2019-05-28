@@ -8,7 +8,7 @@ fi
 
 src_dir=`dirname $1`
 build_dir="build"
-target=`basename -s .s $1`
+target=`basename $1 .s`
 src=$target.s
 obj=$target.o
 
