@@ -7,7 +7,7 @@ height:
 length:
   .long 4, 5, 6
 end:
-.equ factor, 3
+.equ factor, 3        # factor is identifer
 ended:
 
 .section .text
@@ -17,6 +17,8 @@ _start:
   mov $length, %eax
   mov $end, %ebx
   mov $factor, %ecx
+  mov height, %edx
+#mov factor, %ecx    # this will cause segment fault
 
   mov $1, %eax
   mov $0, %ebx

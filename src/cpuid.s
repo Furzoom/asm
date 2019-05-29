@@ -3,6 +3,7 @@
 .section .data
 output:
   .ascii "The processor Vendor ID is 'xxxxxxxxxxxx'\n"
+
 .section .bss
 
 .section .text

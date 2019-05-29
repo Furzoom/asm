@@ -15,14 +15,14 @@ of the program.
 For GNU linker:
 
 ```shell
-as -o foo.o foo.s
-ld -o foo foo.o
+as foo.s -o foo.o
+ld foo.o -o foo
 ```
 
 For gcc:
 
 ```shell
-gcc -o foo foo.s
+gcc foo.s -o foo
 ```
 
 ## Using C Library Functions in Assembly
@@ -32,11 +32,25 @@ First, you should explicitly linked the standard C dynamic library -- using
 `-dynamic-linker /lib64/ld-linux-x86-64.so.2`.
 
 ```shell
-as -o foo.o foo.s
-ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o foo -lc foo.o
+as foo.s -o foo.o
+ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -lc foo.o -o foo 
 ```
 
-X86\_64 calling convention:
+## Debug Assembly
+
+If we want to debug the assembly code, assemble it with `-gstabs`.
+
+```shell
+as --gstabs foo.s -o foo.o
+```
+
+We can show it as:
+
+```shell
+objdump --stabs foo
+```
+
+## X86\_64 calling convention:
 
 - Integer arguments (including pointers) are placed in the registers
   %rdi, %rsi, %rdx, %rcx, %r8, and %r9, in that order.

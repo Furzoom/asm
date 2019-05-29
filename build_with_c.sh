@@ -17,16 +17,8 @@ then
   mkdir -p $build_dir
 fi
 
-arch=$(uname -i)
-if [ "@$arch" = "@x86_64" ]
-then
-  as -gstabs -o $build_dir/$obj $src_dir/$src && \
-    ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o $build_dir/$target -lc $build_dir/$obj
-elif [ "@$arch" = "@i386" ]
-then
-  as -gstabs -o $build_dir/$obj $src_dir/$src && \
-    ld -dynamic-linker /lib/ld-linux.so.2 -o $build_dir/$target -lc $build_dir/$obj
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+ld_linker=`ldd $(which bash) |  grep ld-linux | cut -f 1 -d " " | cut -f 2`
+
+as -gstabs+ -o $build_dir/$obj $src_dir/$src && \
+  ld -dynamic-linker $ld_linker -o $build_dir/$target -lc $build_dir/$obj
+
