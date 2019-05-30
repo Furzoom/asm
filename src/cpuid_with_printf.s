@@ -14,15 +14,14 @@ _start:
   movl  $0, %eax
   cpuid
 
-  movl $buffer, %edi
-  movl %ebx, (%edi)
-  movl %edx, 4(%edi)
-  movl %ecx, 8(%edi)
+  movl  $buffer, %edi
+  movl  %ebx, (%edi)
+  movl  %edx, 4(%edi)
+  movl  %ecx, 8(%edi)
 
-  pushl %edi
-  pushl $output
-
-  call printf
+  pushl %edi          # 2nd parameter
+  pushl $output       # 1st parameter
+  call  printf
 
   movl  $0, %edi
   call exit
