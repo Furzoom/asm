@@ -13,15 +13,15 @@ ended:
 .section .text
 .globl _start
 _start:
-  mov $height, %edi
-  mov $length, %eax
-  mov $end, %ebx
-  mov $factor, %ecx
-  mov height, %edx
-#mov factor, %ecx    # this will cause segment fault
+  movl  $height, %edi
+  movl  $length, %eax
+  movl  $end, %ebx
+  movl  $factor, %ecx
+  movl  height, %edx
+#movl  factor, %ecx    # this will cause segment fault
 
-  mov $1, %eax
-  mov $0, %ebx
-  int $0x80
+  movl  $1, %eax
+  movl  $0, %ebx
+  int   $0x80
 
 

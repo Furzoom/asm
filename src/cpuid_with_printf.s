@@ -11,7 +11,7 @@ output:
 .section .text
 .globl _start
 _start:
-  mov  $0, %eax
+  movl  $0, %eax
   cpuid
 
   movl $buffer, %edi
@@ -19,13 +19,11 @@ _start:
   movl %edx, 4(%edi)
   movl %ecx, 8(%edi)
 
-  #mov  %edi, %esi      # 2nd agrument
-  #mov  $output, %edi   # 1st argument
-  push %edi
-  push $output
+  pushl %edi
+  pushl $output
 
   call printf
 
-  mov  $0, %edi
+  movl  $0, %edi
   call exit
 
