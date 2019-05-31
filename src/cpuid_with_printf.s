@@ -22,6 +22,7 @@ _start:
   pushl %edi          # 2nd parameter
   pushl $output       # 1st parameter
   call  printf
+  addl  $0x8, %esp
 
   movl  $0, %edi
   call exit
