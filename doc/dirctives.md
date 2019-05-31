@@ -61,3 +61,4 @@ Single-precision floating-point number.
 
 `.section` assembles the following code into a section named name.
 
+[Reference directives](https://ftp.gnu.org/old-gnu/Manuals/gas-2.9.1/html_chapter/as_7.html)
