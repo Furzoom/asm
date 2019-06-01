@@ -6,19 +6,19 @@ then
   exit 0
 fi
 
-src_dir=`dirname $1`
-build_dir="build"
-target=`basename $1 .s`
-src=$target.s
-obj=$target.o
+src_dir=$(dirname $1 | sed 's@src@@')
+build_dir="build/$src_dir"
+name=`basename $1 .s`
+target="$build_dir/$name"
+obj="$build_dir/${name}.o"
 
-if [[ ! -d $build_idr ]]
+if [[ ! -d $build_dir ]]
 then
   mkdir -p $build_dir
 fi
 
 ld_linker=`ldd $(which bash) |  grep ld-linux | cut -f 1 -d " " | cut -f 2`
 
-as -gstabs+ -o $build_dir/$obj $src_dir/$src && \
-  ld -dynamic-linker $ld_linker -o $build_dir/$target -lc $build_dir/$obj
+as -gstabs+ -o $obj $1 && \
+  ld -dynamic-linker $ld_linker -o $target -lc $obj
 

@@ -6,15 +6,15 @@ then
   exit 0
 fi
 
-src_dir=`dirname $1`
-build_dir="build"
-target=`basename $1 .s`
-src=$target.s
-obj=$target.o
+src_dir=$(dirname $1 | sed 's@src@@')
+build_dir="build/$src_dir"
+name=`basename $1 .s`
+target="$build_dir/$name"
+obj="$build_dir/${name}.o"
 
-if [[ ! -d $build_idr ]]
+if [[ ! -d $build_dir ]]
 then
   mkdir -p $build_dir
 fi
 
-as -gstabs+ -o $build_dir/$obj $src_dir/$src && ld -o $build_dir/$target $build_dir/$obj
+as -gstabs+ -o $obj $1 && ld -o $target $obj
