@@ -6,7 +6,7 @@ FLAGS=-gstabs+
 
 all: main
 
-main: main.o perimeter.o
+main: main.o utils.o
 	$(LD) $^ -o $@
 
 %.o: %.s
