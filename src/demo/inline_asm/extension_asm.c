@@ -20,7 +20,7 @@ int main() {
   int data2 = 20;
   int result;
 
-  __asm__ __volatile__ ("imull %%edx, %%eax\n\t"
+  __asm__ __volatile__ ("nop"
                         : "=a"(result)
                         : "d"(data1), "a"(data2));
   printf("The result is %d\n", result);
