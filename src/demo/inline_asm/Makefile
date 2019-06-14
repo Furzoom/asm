@@ -1,32 +1,34 @@
 # Copyright 2019 Furzoom.com. All Rights Reserved.
 
-AS=as
-LD=ld
-CC=gcc
-CFLAGS=-Wall
+AS = as
+LD = ld
+CC = gcc
+CFLAGS = -Wall
 
-all: asmtest1 asmtest2
+# Remove predefined rules
+.SUFFIXES:
+.SUFFIXES: .o
 
-asmtest1: asmtest1.o
+.PHONY: clean all
+
+# Make intermediate files list empty
+.SECONDARY:
+
+OBJECT = asmtest1 asmtest2 extension_asm extension_asm2 \
+				 extension_asm3 extension_asm4 extension_asm5 \
+				 extension_asm6 extension_asm7
+
+all: $(OBJECT)
+
+%: %.o
 	$(CC) $^ -o $@
 
-asmtest2: asmtest2.o
-	$(CC) $^ -o $@
-
-asmtest1.o: asmtest1.s
+%.o: %.s
 	$(CC) $(CFLAGS) -c $< -o $@
 
-asmtest1.s: asmtest1.c
+%.s: %.c
 	$(CC) $(CFLAGS) -S $< -o $@
 
-asmtest2.o: asmtest2.s
-	$(CC) $(CFLAGS) -c $< -o $@
-
-asmtest2.s: asmtest2.c
-	$(CC) $(CFLAGS) -S $< -o $@
-
-
-.PHONY: clean
 clean:
-	$(RM) *.s *.o asmtest1 asmtest2
+	$(RM) *.s *.o $(OBJECT)
 
