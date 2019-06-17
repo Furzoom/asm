@@ -1,11 +1,13 @@
 # Copyright 2019 Furzoom.com. All Rights Reserved.
-# BCD
+# BCD - Packed Decimal
 #
-#   FBLD  - converts a BCD value to its 80 bit extended precision equivalent
-#           and push the result onto the stack.
-#   FBSTP - pops the extended precision real value on tos, converts it to an
-#           80 bit BCD value, and stores the converted result at the address
-#           specified by the destination memory operand.
+#   FBLD  - (Load) converts a BCD value to its 80 bit extended precision
+#           equivalent and push the result onto the stack.
+#   FBSTP - (Store and Pop) pops the extended precision real value on tos,
+#           converts it to an 80 bit BCD value, and stores the converted
+#           result at the address specified by the destination memory
+#           operand.
+#
 
 .section .data
 # initialized data here
